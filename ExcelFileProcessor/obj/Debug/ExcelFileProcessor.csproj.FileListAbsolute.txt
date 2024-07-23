@@ -1,0 +1,11 @@
+F:\CodingProjects\C#Projects\ExcelFileProcessor\bin\Debug\ExcelFileProcessor.exe.config
+F:\CodingProjects\C#Projects\ExcelFileProcessor\bin\Debug\ExcelFileProcessor.exe
+F:\CodingProjects\C#Projects\ExcelFileProcessor\bin\Debug\ExcelFileProcessor.pdb
+F:\CodingProjects\C#Projects\ExcelFileProcessor\bin\Debug\ExcelDataReader.dll
+F:\CodingProjects\C#Projects\ExcelFileProcessor\bin\Debug\ExcelDataReader.pdb
+F:\CodingProjects\C#Projects\ExcelFileProcessor\bin\Debug\ExcelDataReader.xml
+F:\CodingProjects\C#Projects\ExcelFileProcessor\obj\Debug\ExcelFileProcessor.csproj.AssemblyReference.cache
+F:\CodingProjects\C#Projects\ExcelFileProcessor\obj\Debug\ExcelFileProcessor.csproj.CoreCompileInputs.cache
+F:\CodingProjects\C#Projects\ExcelFileProcessor\obj\Debug\ExcelFileProcessor.csproj.CopyComplete
+F:\CodingProjects\C#Projects\ExcelFileProcessor\obj\Debug\ExcelFileProcessor.exe
+F:\CodingProjects\C#Projects\ExcelFileProcessor\obj\Debug\ExcelFileProcessor.pdb
