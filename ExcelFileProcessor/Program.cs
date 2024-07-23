@@ -18,7 +18,8 @@ namespace ExcelFileProcessor
 
 			// Reading the configuration in App.config
 			string folderPath = ConfigurationManager.AppSettings["FolderPath"];
-			string keyword = ConfigurationManager.AppSettings["Keyword"];
+			string keywordsConfig = ConfigurationManager.AppSettings["Keywords"];
+			var keywords = keywordsConfig.Split(',').Select(k => k.Trim()).ToList();
 
 			// Get all Excel files in the directory
 			var excelFiles = Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories)
@@ -40,6 +41,8 @@ namespace ExcelFileProcessor
 					{
 						if (file.EndsWith(".csv"))
 						{
+							Console.WriteLine(file);
+
 							foreach (var line in File.ReadLines(file))
 							{
 								textWriter.WriteLine(line);
@@ -47,6 +50,8 @@ namespace ExcelFileProcessor
 						}
 						else
 						{
+							Console.WriteLine(file);
+
 							using (var stream = File.Open(file, FileMode.Open, FileAccess.Read))
 							{
 								using (var reader = ExcelReaderFactory.CreateReader(stream))
@@ -75,12 +80,27 @@ namespace ExcelFileProcessor
 
 			var outputFilePath = Path.Combine(textFolderPath, outputFile);
 
+			if (File.Exists(outputFilePath))
+			{
+				File.Delete(outputFilePath);
+			}
+
 			foreach (var textFile in Directory.EnumerateFiles(textFolderPath, "*.txt"))
 			{
 				var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(textFile);
 				var correspondingExcelFile = excelFiles.FirstOrDefault(f => Path.GetFileNameWithoutExtension(f) == fileNameWithoutExtension);
 
-				if (File.ReadLines(textFile, Encoding.UTF8).Any(line => line.Contains(keyword)) && correspondingExcelFile != null)
+				bool containsKeyword = false;
+				foreach (var line in File.ReadLines(textFile, Encoding.UTF8))
+				{
+					if (keywords.Any(keyword => line.Contains(keyword)))
+					{
+						containsKeyword = true;
+						break;
+					}
+				}
+
+				if (containsKeyword && correspondingExcelFile != null)
 				{
 					matchedFiles.Add(correspondingExcelFile);
 				}
