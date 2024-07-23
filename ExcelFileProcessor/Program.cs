@@ -71,6 +71,10 @@ namespace ExcelFileProcessor
 
 			var matchedFiles = new List<string>();
 
+			var outputFile = "Output.txt";
+
+			var outputFilePath = Path.Combine(textFolderPath, outputFile);
+
 			foreach (var textFile in Directory.EnumerateFiles(textFolderPath, "*.txt"))
 			{
 				var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(textFile);
@@ -87,6 +91,7 @@ namespace ExcelFileProcessor
 			foreach (var matchedFile in matchedFiles)
 			{
 				Console.WriteLine(matchedFile);
+				File.AppendAllText(outputFilePath, matchedFile + Environment.NewLine);
 			}
 
 			Console.ReadKey();
